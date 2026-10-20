@@ -1,0 +1,409 @@
+/* ==============================================================================
+   LOVE LETTER & QUOTES & FLOATING CONTROLS STYLES
+   ============================================================================== */
+
+/* Section: Love Letter */
+.letter-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.parchment-card {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  background: radial-gradient(ellipse at 50% 0%, #fff8f0 0%, #faebe0 60%, #f4decb 100%);
+  color: #3b181e;
+  border-radius: 28px;
+  padding: 56px 48px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(212, 175, 55, 0.3),
+    inset 0 0 40px rgba(224, 169, 109, 0.25);
+  border: 2px solid rgba(212, 175, 55, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .parchment-card {
+    padding: 38px 24px;
+    border-radius: 20px;
+  }
+}
+
+/* Wax Seal / Heart Emblem at Top */
+.wax-seal {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 35% 35%, #e63946, #9b111e, #590d22);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(243, 229, 171, 0.5);
+  z-index: 10;
+}
+
+.letter-header {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 28px;
+}
+
+.letter-title {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #800f2f;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 480px) {
+  .letter-title {
+    font-size: 1.65rem;
+  }
+}
+
+.letter-salutation {
+  font-family: var(--font-cursive);
+  font-size: 2rem;
+  color: #a4133c;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.letter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #3b181e;
+  font-family: var(--font-sans);
+}
+
+@media (max-width: 480px) {
+  .letter-body {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    gap: 14px;
+  }
+}
+
+.letter-paragraph {
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.letter-paragraph.highlight {
+  font-weight: 600;
+  color: #800f2f;
+  padding: 10px 18px;
+  background: rgba(255, 117, 143, 0.12);
+  border-left: 3px solid #c9184a;
+  border-radius: 0 10px 10px 0;
+}
+
+.letter-footer-block {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-top: 1px dashed rgba(164, 19, 60, 0.25);
+  padding-top: 20px;
+}
+
+.letter-closing {
+  font-family: var(--font-cursive);
+  font-size: 1.85rem;
+  color: #a4133c;
+  margin-bottom: 4px;
+}
+
+.letter-sender {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #590d22;
+}
+
+.letter-replay-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.btn-replay-letter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: rgba(45, 6, 15, 0.65);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  color: var(--blush-light);
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+.btn-replay-letter:hover {
+  background: var(--crimson-rose);
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 4px 20px rgba(201, 24, 74, 0.5);
+}
+
+/* Section: Love Quotes Carousel / Grid */
+.quotes-section {
+  position: relative;
+  width: 100%;
+}
+
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .quotes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quote-card {
+  position: relative;
+  background: rgba(45, 6, 15, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 182, 193, 0.22);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+.quote-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold-primary);
+  box-shadow: 0 12px 35px rgba(201, 24, 74, 0.35), 0 0 15px rgba(212, 175, 55, 0.3);
+  background: rgba(70, 8, 22, 0.7);
+}
+
+.quote-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.quote-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(201, 24, 74, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rose-pink);
+  border: 1px solid rgba(255, 117, 143, 0.4);
+}
+
+.quote-tag {
+  font-size: 0.76rem;
+  color: var(--gold-light);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.quote-text {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #fff;
+  font-style: italic;
+}
+
+/* Floating Music Player */
+.floating-music-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(30, 4, 10, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 8px 16px 8px 10px;
+  border-radius: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .floating-music-bar {
+    bottom: 16px;
+    left: 16px;
+    padding: 6px 12px 6px 8px;
+  }
+}
+
+.music-disk-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9184a, #800f2f);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.music-disk-btn.spinning {
+  animation: orbitRotate 5s linear infinite;
+}
+
+.music-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.music-title-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-sub-text {
+  font-size: 0.68rem;
+  color: var(--blush-light);
+}
+
+.music-volume-slider {
+  width: 60px;
+  accent-color: var(--rose-pink);
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .music-volume-slider {
+    display: none;
+  }
+}
+
+/* Floating Heart Surprise Button (Bottom Right) */
+.floating-heart-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff4d6d, #c9184a, #800f2f);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(255, 77, 109, 0.5), 0 0 20px rgba(255, 77, 109, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (max-width: 480px) {
+  .floating-heart-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.floating-heart-btn:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 10px 40px rgba(255, 77, 109, 0.8), 0 0 30px #ff758f;
+}
+
+.floating-heart-btn:active {
+  transform: scale(0.92);
+}
+
+/* Floating Toast Surprise */
+.floating-surprise-toast {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  z-index: 100;
+  background: rgba(128, 15, 47, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 182, 193, 0.5);
+  border-radius: 20px;
+  padding: 12px 20px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 24, 74, 0.4);
+  animation: fadeInUp 0.3s ease;
+  pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  .floating-surprise-toast {
+    bottom: 74px;
+    right: 16px;
+    max-width: calc(100vw - 32px);
+    font-size: 0.88rem;
+  }
+}
+
+/* Footer note */
+.site-footer {
+  text-align: center;
+  padding: 40px 20px 80px 20px;
+  border-top: 1px solid rgba(255, 182, 193, 0.15);
+  margin-top: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-quote {
+  font-family: var(--font-cursive);
+  font-size: 1.8rem;
+  color: var(--blush-light);
+  margin-bottom: 8px;
+}
+
+.footer-signature {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}

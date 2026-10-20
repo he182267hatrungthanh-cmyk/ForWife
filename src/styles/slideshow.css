@@ -1,0 +1,325 @@
+/* ==============================================================================
+   CINEMATIC PHOTO SLIDESHOW STYLES
+   ============================================================================== */
+
+.slideshow-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 30px;
+  background: rgba(201, 24, 74, 0.2);
+  border: 1px solid rgba(255, 117, 143, 0.35);
+  color: var(--rose-pastel);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  .section-title {
+    font-size: 1.7rem;
+  }
+}
+
+.section-subtitle {
+  color: var(--blush-light);
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+/* Slideshow Frame & Theater Container */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  height: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.2);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  background: #180206;
+}
+
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 480px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slideshow-container {
+    height: clamp(420px, 68vh, 520px);
+    border-radius: 18px;
+  }
+}
+
+/* Dual Layer Background: Ambient Blurred Background */
+.ambient-bg-layer {
+  position: absolute;
+  inset: -20px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(35px) brightness(0.4) saturate(1.4);
+  transform: scale(1.15);
+  transition: background-image 0.8s ease-in-out;
+  pointer-events: none;
+}
+
+/* Main Display Layer for crisp foreground image */
+.slide-theater {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+}
+
+@keyframes zoomToFillFrame {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.24);
+    opacity: 0.95;
+  }
+}
+
+.slide-item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.slide-item.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.slide-photo {
+  max-width: 86%;
+  max-height: 80%;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 182, 193, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.slide-item.active .slide-photo {
+  animation: zoomToFillFrame 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Caption Overlay inside Slideshow */
+.slide-caption-bar {
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  right: 20px;
+  z-index: 5;
+  background: rgba(30, 4, 10, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 182, 193, 0.25);
+  border-radius: 16px;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 480px) {
+  .slide-caption-bar {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 8px 14px;
+  }
+}
+
+.caption-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+.caption-text {
+  font-size: 0.96rem;
+  color: #fff;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 480px) {
+  .caption-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* Navigation Controls (Prev/Next buttons) */
+.slideshow-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(45, 6, 15, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 182, 193, 0.35);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.slideshow-nav-btn:hover {
+  background: var(--crimson-rose);
+  border-color: #fff;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 77, 109, 0.6);
+}
+
+.slideshow-nav-btn.prev {
+  left: 16px;
+}
+
+.slideshow-nav-btn.next {
+  right: 16px;
+}
+
+@media (max-width: 480px) {
+  .slideshow-nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .slideshow-nav-btn.prev {
+    left: 8px;
+  }
+  .slideshow-nav-btn.next {
+    right: 8px;
+  }
+}
+
+/* Control Bar underneath Slideshow */
+@media (max-width: 600px) {
+  .slideshow-bottom-controls {
+    flex-direction: column-reverse;
+    gap: 14px;
+    align-items: center;
+    padding: 0 4px;
+  }
+  .indicator-dots {
+    justify-content: center;
+    gap: 6px;
+    max-width: 100%;
+  }
+  .dot-btn {
+    width: 8px;
+    height: 8px;
+  }
+  .dot-btn.active {
+    width: 20px;
+  }
+}
+
+.indicator-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dot-btn {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.dot-btn.active {
+  width: 24px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--rose-pink), var(--gold-primary));
+  box-shadow: 0 0 10px rgba(255, 77, 109, 0.6);
+}
+
+.slideshow-pause-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(45, 6, 15, 0.6);
+  border: 1px solid var(--glass-border);
+  color: var(--blush-light);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.slideshow-pause-btn:hover {
+  background: rgba(90, 7, 26, 0.8);
+  color: #fff;
+  border-color: var(--rose-pastel);
+}
